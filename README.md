@@ -1,18 +1,20 @@
-# Salesforce DX Project: Next Steps
+# Waypath Technical Assesment
+There are a few gaps and bugs that I will be continuing to fix, but this is what I came up with in a reasonable amount of time. I will create a seperate Repo so that I can continue to build this out and make the desired improvements. 
 
-Now that you’ve created a Salesforce DX project, what’s next? Here are some documentation resources to get you started.
+## Known issues
 
-## How Do You Plan to Deploy Your Changes?
+The Component does not handle multiple contacts. I haven't dug into why, yet. 
 
-Do you want to deploy a set of changes, or create a self-contained application? Choose a [development model](https://developer.salesforce.com/tools/vscode/en/user-guide/development-models).
+The way I am creating the Account/contact Relationship is through the AccountContachRelation sObject, which is different than the regular relationship. I know there is a way to create that relationship by serializing the record into JSON and then adding the relationship, then deSerializing the JSON into the sObjectType. In order for the current method to work, the Account Setting "Allow users to relate a contact to multiple accounts" must be enabled, and the contact must have a primary Account. Additionally some page layout changes are needed to show the relationship. 
 
-## Configure Your Salesforce DX Project
+## Areas to improve
+I would like the components to be more abstracted from the Contact sobject, That way this search functionality could be reuseable. You can see I was trying to accomplish this, but quickly realized it was taking too much time.
 
-The `sfdx-project.json` file contains useful configuration information for your project. See [Salesforce DX Project Configuration](https://developer.salesforce.com/docs/atlas.en-us.sfdx_dev.meta/sfdx_dev/sfdx_dev_ws_config.htm) in the _Salesforce DX Developer Guide_ for details about this file.
+I want to fix the issue with the LWC to handle multiple contact updates 
 
-## Read All About It
+I would like to include jest tests
 
-- [Salesforce Extensions Documentation](https://developer.salesforce.com/tools/vscode/)
-- [Salesforce CLI Setup Guide](https://developer.salesforce.com/docs/atlas.en-us.sfdx_setup.meta/sfdx_setup/sfdx_setup_intro.htm)
-- [Salesforce DX Developer Guide](https://developer.salesforce.com/docs/atlas.en-us.sfdx_dev.meta/sfdx_dev/sfdx_dev_intro.htm)
-- [Salesforce CLI Command Reference](https://developer.salesforce.com/docs/atlas.en-us.sfdx_cli_reference.meta/sfdx_cli_reference/cli_reference.htm)
+I need to impove the test data creation and expand on the current Apex tests. 
+
+
+
