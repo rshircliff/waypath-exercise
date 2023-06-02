@@ -1,12 +1,13 @@
 public with sharing class ContactController {      
     @AuraEnabled( cacheable = true )  
-    public static List<Contact> fetchContacts( String searchKey ) {  
-        System.debug('here is the string: ' + searchKey);
+    public static List<Contact> fetchContacts( String searchKey ) { 
+        //TODO: check if AccountContactRelation already exists
         String strKey = '%' + searchKey + '%';  
         return [
             SELECT Id, Name
             FROM Contact
-            WHERE Name LIKE: strKey LIMIT 5
+            WHERE AccountId != NULL 
+            AND Name LIKE: strKey LIMIT 5
         ];  
     }    
 
@@ -26,12 +27,7 @@ public with sharing class ContactController {
         } catch (Exception e) {
             throw new AuraHandledException(e.getMessage());
         }
-
+        //find better return value
         return 'ok';
-    }
-
-    //create helper method with abstracted signture to relationship type
-    private static void createAccountRelationshipObject() {
-        
     }
 }

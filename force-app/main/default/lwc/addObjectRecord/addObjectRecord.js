@@ -80,9 +80,15 @@ export default class AddObjectRecord extends LightningElement {
       this.dispatchEvent(event);
       this.selectedRecords = null;
       } else {
-        console.log('in else')
+        //TODO: Not showing Toast
+        const event = new ShowToastEvent({
+          title: 'Something went wrong',
+          message: 'Contacts were not updated',
+          variant: 'error',
+          mode: 'dismissable'
+      });
+      this.dispatchEvent(event);
       }
-      //this.dispatchEvent(toastEvent);
     });
   }
   
