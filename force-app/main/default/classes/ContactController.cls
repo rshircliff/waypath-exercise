@@ -6,8 +6,7 @@ public with sharing class ContactController {
         return [
             SELECT Id, Name
             FROM Contact
-            WHERE AccountId != NULL 
-            AND Name LIKE: strKey LIMIT 5
+            WHERE Name LIKE: strKey LIMIT 5
         ];  
     }    
 
@@ -27,7 +26,12 @@ public with sharing class ContactController {
         } catch (Exception e) {
             throw new AuraHandledException(e.getMessage());
         }
-        //find better return value
+
         return 'ok';
+    }
+
+    //create helper method with abstracted signture to relationship type
+    private static void createAccountRelationshipObject() {
+        
     }
 }
