@@ -1,0 +1,44 @@
+<template>
+  <lightning-card title={cardTitle} variant="Narrow" icon-name="standard:account">
+    <!--Needs dynamic label-->
+    <lightning-input 
+      type="search"
+      label="Contact Name" 
+      onchange={handleChange} 
+      value={searchKey}
+      class="slds-var-m-around_medium"
+    ></lightning-input>
+    <template if:true={showResults}>
+      <div class="slds-box">
+        <template iterator:it={objectRecords} for:index="obj">
+          <div onclick={handleSelect} key={it.value.Id} data-id={it.index} style="cursor: pointer;">                        
+            <lightning-formatted-rich-text value={it.value.Name}></lightning-formatted-rich-text>  
+          </div>  
+        </template>   
+      </div>
+    </template>
+    <div class="slds-m-around_medium">
+     <template if:true={showSelectedRecords}>
+        Selected Contacts
+        <template iterator:it={selectedRecords} for:index="rec">
+          <lightning-input 
+            key={it.value.Id} 
+            data-id={it.index} 
+            style="cursor: pointer;" 
+            type="checkbox" 
+            label={it.value.Name} 
+            onchange={handleCheckbox}
+          ></lightning-input>
+        </template>
+        <div class="slds-align_absolute-center">
+          <lightning-button
+          variant="brand"
+          label="Add Contact(s)"
+          title="Add Contacts to record"
+          onclick={handleClick}
+          ></lightning-button>
+        </div>
+     </template>
+    </div>
+  </lightning-card>
+</template>
